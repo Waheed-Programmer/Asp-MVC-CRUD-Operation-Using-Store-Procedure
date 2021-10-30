@@ -30,7 +30,7 @@ namespace MVC_CRUD_Operation_Store_Procedure.Models.Services
                     Id = Convert.ToInt32(dr["Id"]),
                     Name = dr["Name"].ToString(),
                     Eamil = dr["Email"].ToString(),
-                    Age = Convert.ToInt32(dr["Name"])
+                    Age = Convert.ToInt32(dr["Age"])
                 });
                
             }
