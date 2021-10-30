@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVC_CRUD_Operation_Store_Procedure.Models.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,23 +9,16 @@ namespace MVC_CRUD_Operation_Store_Procedure.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        DAL db = new DAL();
+
+
+        public ActionResult List()
         {
-            return View();
+            var data = db.GetEmloye();
+
+            return View(data);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+       
     }
 }
