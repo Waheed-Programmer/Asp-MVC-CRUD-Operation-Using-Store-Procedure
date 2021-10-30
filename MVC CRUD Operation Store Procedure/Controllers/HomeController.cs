@@ -1,4 +1,5 @@
-﻿using MVC_CRUD_Operation_Store_Procedure.Models.Services;
+﻿using MVC_CRUD_Operation_Store_Procedure.Models;
+using MVC_CRUD_Operation_Store_Procedure.Models.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,24 @@ namespace MVC_CRUD_Operation_Store_Procedure.Controllers
 
             return View(data);
         }
+        [HttpGet]
+        public ActionResult Add()
+        {
+            return View();
+        }
+       [HttpPost]
+        public ActionResult Add(EmployeModel model)
+        {
+            if (db.InsertEmploye(model))
+            {
+                TempData["save"] = "Save";
+                RedirectToAction("List");
+            }else
+            {
+                TempData["save"] = "Error";
 
-       
+            }
+            return View();
+        }
     }
 }

@@ -36,5 +36,27 @@ namespace MVC_CRUD_Operation_Store_Procedure.Models.Services
             }
             return list;
         }
+
+        public bool InsertEmploye(EmployeModel e)
+        {
+            cmd = new SqlCommand("sp_insert", con);
+            sd = new SqlDataAdapter(cmd);
+            cmd.Parameters.AddWithValue("@name", e.Name);
+            cmd.Parameters.AddWithValue("@email", e.Eamil);
+            cmd.Parameters.AddWithValue("@age", e.Age);
+            con.Open();
+            int r = cmd.ExecuteNonQuery();
+            if (r > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+
+        }
     }
 }
