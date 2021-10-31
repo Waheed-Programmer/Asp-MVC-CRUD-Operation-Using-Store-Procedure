@@ -29,7 +29,7 @@ namespace MVC_CRUD_Operation_Store_Procedure.Models.Services
                 {
                     Id = Convert.ToInt32(dr["Id"]),
                     Name = dr["Name"].ToString(),
-                    Eamil = dr["Email"].ToString(),
+                    Email = dr["Email"].ToString(),
                     Age = Convert.ToInt32(dr["Age"])
                 });
                
@@ -39,14 +39,16 @@ namespace MVC_CRUD_Operation_Store_Procedure.Models.Services
 
         public bool InsertEmploye(EmployeModel e)
         {
-            cmd = new SqlCommand("sp_insert", con);
+            cmd = new SqlCommand("SP_Save", con);
             sd = new SqlDataAdapter(cmd);
+           
             cmd.Parameters.AddWithValue("@name", e.Name);
-            cmd.Parameters.AddWithValue("@email", e.Eamil);
+            cmd.Parameters.AddWithValue("@email", e.Email);
             cmd.Parameters.AddWithValue("@age", e.Age);
             con.Open();
             int r = cmd.ExecuteNonQuery();
-            if (r > 0)
+            con.Close();
+            if (r >=1)
             {
                 return true;
             }
@@ -54,7 +56,7 @@ namespace MVC_CRUD_Operation_Store_Procedure.Models.Services
             {
                 return false;
             }
-
+           
 
 
         }

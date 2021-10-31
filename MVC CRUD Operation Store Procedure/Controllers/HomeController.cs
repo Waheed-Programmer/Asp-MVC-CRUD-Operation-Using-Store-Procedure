@@ -27,16 +27,23 @@ namespace MVC_CRUD_Operation_Store_Procedure.Controllers
        [HttpPost]
         public ActionResult Add(EmployeModel model)
         {
-            if (db.InsertEmploye(model))
+            try
             {
-                TempData["save"] = "Save";
-                RedirectToAction("List");
-            }else
-            {
-                TempData["save"] = "Error";
-
+                if (ModelState.IsValid)
+                {
+                    DAL sdb = new DAL();
+                    if (sdb.InsertEmploye(model))
+                    {
+                        ViewBag.Message = "Employe Details Added Successfully";
+                        ModelState.Clear();
+                    }
+                }
+                return View();
             }
-            return View();
+            catch
+            {
+                return View();
+            }
         }
     }
 }
