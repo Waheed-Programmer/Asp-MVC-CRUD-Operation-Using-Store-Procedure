@@ -39,7 +39,7 @@ namespace MVC_CRUD_Operation_Store_Procedure.Models.Services
 
         public bool InsertEmploye(EmployeModel e)
         {
-            cmd = new SqlCommand("SP_Save", con);
+            cmd = new SqlCommand("saveEmploye", con);
             sd = new SqlDataAdapter(cmd);
            
             cmd.Parameters.AddWithValue("@name", e.Name);

@@ -35,14 +35,16 @@ namespace MVC_CRUD_Operation_Store_Procedure.Controllers
                     if (sdb.InsertEmploye(model))
                     {
                         ViewBag.Message = "Employe Details Added Successfully";
+                        RedirectToAction("List");
+
                         ModelState.Clear();
                     }
                 }
                 return View();
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+                throw ex;
             }
         }
     }
